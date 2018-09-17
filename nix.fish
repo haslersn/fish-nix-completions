@@ -119,7 +119,7 @@ function __fish_nix_completions_create_completions --argument cmd
 end
 
 function __fish_nix_completions_shared_rules
-    echo "\
+    echo "
 1; --help; Print command reference
 1; --version; Print Nix version
 1; --no-build-output; 1; Suppress build output
@@ -134,8 +134,6 @@ function __fish_nix_completions_shared_rules
 1; --cores; Int; 1; Set NIX_BUILD_CORES
 1; --max-silent-time; Int; 1; Set builder timeout after output
 1; --timeout; Int; 1; Set absolute builder timeout
-1; --arg; String; String; 1; Pass name-value pair to the function evaluator
-1; --argstr; String; String; 1; Pass name-string pair to the function evaluator
 1; --option; String; String; 1; Set a nix configuration option
 File; PLACEHOLDER;
 Dir; PLACEHOLDER;
@@ -146,6 +144,13 @@ String; PLACEHOLDER;
 VariadicInts; PLACEHOLDER; VariadicInts;
 VariadiceStrings; PLACEHOLDER; VariadiceStrings;
 VariadicePkgs; PLACEHOLDER; VariadicePkgs;
+"
+end
+
+function __fish_nix_completions_arg_rules
+    echo "
+1; --arg; String; String; 1; Pass name-value pair to the function evaluator
+1; --argstr; String; String; 1; Pass name-string pair to the function evaluator
 "
 end
 
@@ -194,4 +199,15 @@ dgen; PLACEHOLDER; VariadicInts;
 "
 end
 
-__fish_nix_completions_create_completions nix-env (__fish_nix_completions_shared_rules) (__fish_nix_completions_rules_nix_env)
+__fish_nix_completions_create_completions nix-env \
+    (__fish_nix_completions_shared_rules) \
+    (__fish_nix_completions_arg_rules) \
+    (__fish_nix_completions_rules_nix_env)
+
+__fish_nix_completions_create_completions nix-build \
+    (__fish_nix_completions_arg_rules) \
+    (__fish_nix_completions_shared_rules)
+
+__fish_nix_completions_create_completions nix-store \
+    (__fish_nix_completions_arg_rules) \
+    (__fish_nix_completions_shared_rules)
