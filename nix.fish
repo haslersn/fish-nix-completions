@@ -178,6 +178,7 @@ function __fish_nix_completions_rules_nix_env
     install: -b--prebuild-only: install         ; Don't build, use only pre-built binaries
     install: -P--preserve-installed: install    ; Don't remove matching derivations
     install: -r--remove-all: install            ; Remove all installed packages first
+    install: PLACEHOLDER: install
     1: -u--upgrade: upgrade         ; Upgrade packages in the current profile
     upgrade: --lt: upgrade          ; Only update to newer version (default)
     upgrade: --leq: upgrade         ; Upgrade to newer or same versions
