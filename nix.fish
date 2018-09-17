@@ -106,10 +106,10 @@ function __fish_nix_completions_create_completions --argument cmd
         if test PLACEHOLDER != $token
             set dissect (__fish_nix_completions_dissect_short_long $rule[2])
             if test -n "$dissect"
-                complete -x -c $cmd -n "__fish_nix_completions_current_top_is $top $quoted_rules" \
-                    -a $dissect[1] -d "$rule[-1]"
-                complete -x -c $cmd -n "__fish_nix_completions_current_top_is $top $quoted_rules" \
-                    -a $dissect[2] -d "$rule[-1]"
+                for i in 1 2
+                    complete -x -c $cmd -n "__fish_nix_completions_current_top_is $top $quoted_rules" \
+                        -a $dissect[$i] -d "$rule[-1]"
+                end
             else
                 complete -c $cmd -n "__fish_nix_completions_current_top_is $top $quoted_rules" -a $token -d "$rule[-1]"
             end
